@@ -9,6 +9,17 @@
 </head>
 <body>
     <h1>Hello</h1>
+
+    <form action="/create" method="post">
+        <input type="text" name="task" id="task" placeholder="insira uma tarefa">
+        <button type="submit" id="addButton">Adicionar</button>
+    </form>
+
+    <ul>
+        <% taskList.forEach((task) => { %>
+            <li><%= task.task %> | <%= task.date.toLocaleDateString('pt-BR') %></li>
+        <% }) %>
+    </ul>
     <script src="script.js"></script>
 </body>
 </html>

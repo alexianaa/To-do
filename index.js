@@ -9,6 +9,7 @@ const port = 3000;
 
 app.set("view engine", "ejs"); // reconhecer arquivo ejs
 app.use(express.static(path.join(__dirname,"public"))); // conectar css com arquivo html
+app.use(express.urlencoded()) // receber formulario atraves do body
 app.use(routes);
 
 app.listen(port, () => {
