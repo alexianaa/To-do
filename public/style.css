@@ -10,7 +10,6 @@ body {
     background-color: #ffebfd;
     width: 100%;
     height: 100%;
-    color: #634B7D;
 }
 
 header {
@@ -66,7 +65,7 @@ ul {
 ul li {
     position: relative;
     padding: 1rem;
-    background-color: #FFD8D6;
+    background-color: #f9caff;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -77,7 +76,7 @@ ul li {
 
 ul li a {
     text-decoration: none;
-    color: #634B7D;
+    padding-left: 2rem;
 }
 
 ul li span {
@@ -219,4 +218,41 @@ div#btnConfirmations a:hover {
 
 span#close-message:hover {
     cursor: pointer;
+}
+
+ul li.check-true {
+    background-color: #e0caf8;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+ul li a.check-true {
+    color: #fff;
+}
+
+ul li a.check-false {
+    color: #451775;
+}
+
+ul li a.check-true::before {
+    content: "";
+    position: absolute;
+    border: #fff solid;
+    top: 24px;
+    left: 16px;
+    height: 15px;
+    width: 7px;
+    border-width: 0px 2px 2px 0px;
+    transform: rotate(45deg);
+}
+
+ul li a.check-false::before {
+    content: "";
+    position: absolute;
+    border: rgb(155, 48, 187) solid;
+    top: 27px;
+    left: 16px;
+    height: 16px;
+    width: 16px;
+    border-width: 2px 2px 2px 2px;
 }
