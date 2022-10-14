@@ -192,3 +192,31 @@ div#btnConfirmations a:hover {
     background-color: #451775;
     color: #ffffff;
 }
+
+.message {
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message-danger {
+    background-color: #f79090;
+    color: #ad0000;
+}
+
+.message-success {
+    background-color: #a2ffaa;
+    color: #1dad00;
+}
+
+span#close-message:hover {
+    cursor: pointer;
+}
