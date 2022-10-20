@@ -28,14 +28,14 @@ const createTask = async (req,res) => {
     if(!task.task){
         message = 'Insira um texto antes de adicionar a tarefa!'
         type = 'danger'
-        return res.redirect("/")
+        return res.redirect("/task")
     }
 
     try {
         await Task.create(task)
         message = 'Tarefa criada com sucesso!'
         type = 'success'
-        return res.redirect("/")
+        return res.redirect("/task")
     } catch (err) {
         res.status(500).send({error: err.message})
     }
@@ -74,7 +74,7 @@ const updateOneTask = async (req,res) => {
         await Task.updateOne({_id: req.params.id}, task)
         message = 'Tarefa atualizada com sucesso!'
         type = 'success'
-        res.redirect('/')
+        res.redirect('/task')
     } catch (err) {
         res.status(500).send({error: err.message})
     }
@@ -85,7 +85,7 @@ const deleteOneTask = async (req,res) => {
         await Task.deleteOne({_id: req.params.id})
         message = 'Tarefa deletada com sucesso!'
         type = 'success'
-        res.redirect('/')
+        res.redirect('/task')
     } catch (err) {
         res.status(500).send({error: err.message})
     }
@@ -96,7 +96,7 @@ const taskCheck = async (req,res) => {
         const task = await Task.findOne({_id: req.params.id});
         task.check = !task.check;
         await Task.updateOne({_id: req.params.id}, task);
-        res.redirect("/");
+        res.redirect("/task");
     } catch (err) {
         res.status(500).send({error: err.message})
     }
