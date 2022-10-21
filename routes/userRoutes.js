@@ -1,12 +1,12 @@
 const routes = require("express").Router();
-//const TaskController = require("../controller/TaskController");
+const UserController = require("../controller/UserController");
+const authMiddleware = require("../middleware/auth");
 
-routes.get("/", async(req,res) => {
-    try {
-        res.send({message: 'Bem vindo'})
-    } catch (error) {
-        
-    }
-});   
+routes.use(authMiddleware);
+
+routes.get('/', (req,res) => {
+    return res.send({message: 'Bem vindo, usuario'})
+})
+routes.get('/getAll', UserController.getAllUsers)
 
 module.exports = routes;
