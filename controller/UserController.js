@@ -9,6 +9,17 @@ const getAllUsers = async (req,res) => {
     }
 }
 
+const deleteUser = async (req,res) => {
+    try {
+        id = req.params
+        const response = await User.deleteOne({id: id})
+        return res.send({response})
+    } catch (error) {
+        return res.send({error: error})
+    }
+}
+
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    deleteUser
 }

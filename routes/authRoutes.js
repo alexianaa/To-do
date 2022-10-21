@@ -1,10 +1,9 @@
 const routes = require("express").Router();
 const AuthController = require("../controller/AuthController");
 
-routes.get("/", (req,res) => {
-    return res.send({message: 'Bem vindo'})
-});
+routes.get("/", AuthController.sign);
+routes.get("/register", AuthController.register);
 routes.post("/login", AuthController.auth);
-routes.post("/register", AuthController.createUser);
+routes.post("/createUser", AuthController.createUser);
 
 module.exports = routes;

@@ -8,14 +8,27 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>LOGIN</h1>
-    <form action="/user/login" method="post">
-        <p>E-mail:</p>
-        <input>
-        <p>Senha:</p>
-        <input>
-        <button type="submit" id="loginBtn" >Enviar</button>
-        <a href="/user/auth">Cadastre-se</a>
-    </form>
+    <% if(message != '') { %>
+        <section class="message message-<%= type %>">
+            <p><%= message %> </p>
+            <span id="close-message" ><i class="bi bi-x-circle"></i></span>
+        </section>
+    <% } %>
+
+    <% if(!user) { %> 
+        <h1>LOGIN</h1>
+        <form action="/login" method="post">
+            <p>E-mail:</p>
+            <input type="text" name="email" id="email" placeholder="insira o e-mail" >
+            <p>Senha:</p>
+            <input  type="password" name="password" id="password" placeholder="insira a senha">
+            <button type="submit" id="loginBtn" >Enviar</button>
+            <a href="register">Cadastre-se</a>
+        </form>
+    <% } else { %>
+        <%- include('./index') %>
+    <% } %>  
+
+    <script src="script.js"></script>
 </body>
 </html>

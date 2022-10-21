@@ -13,70 +13,71 @@ function gerarToken(params = {}) {
     })
 }
 
-const createUser = async (req,res) => {
+const sign = async (req,res) => {
     try {
-        const email  = req.body.email;
-        if (await User.findOne({email})){
-            message = "Já existe uma conta cadastrada com esse e-mail!"
-            type = "danger"
-            return res.redirect("/")
-        }else{
-            const user = await User.create(req.body);
-            message = "Conta cadastrada com sucesso"
-            type = "success"
-            user.password = undefined;
-            return res.send({
-                user, 
-                token: gerarToken({id: user._id})
-            })
-        }
+        return res.render("unsigned", {user: null, message: null, type: null})
     } catch (error) {
-        res.status(500).send({error: error.message})
+        return res.send({message: 'erro ao entrar na pagina', error: error})
     }
 }
 
-// const login = async (req,res) => {
-//     try {
-//         const {email, password} = req.body;
-//         const response = await User.findOne(email);
-//         if(response){
-//             const taskList = await Task.find();
-//             message = 'Login efetuado com sucesso'
-//             type = 'success'
-//             return res.render("index", {
-//                 taskList, 
-//                 task: null, 
-//                 taskDelete: null,
-//                 message,
-//                 type
-//             });
-//         }
-//         return res.render("unsigned", {
-//             user: null
-//         });
-//     } catch (error) {
-//         res.status(500).send({error: error.message})
-//     }
-// }
+const register = async (req,res) => {
+    try {
+        return res.render("register", {user: null})
+    } catch (error) {
+        return res.send({message: 'erro ao entrar na pagina', error: error})
+    }
+}
 
 const auth = async (req,res) => {
     try {
         const {email, password} = req.body;
         const user = await User.findOne({email}).select('+password');
 
+        if(!email || !password){
+            message = 'Preencha todos os campos!'
+            type = 'danger'
+            return res.render('unsigned', {
+                user: null,
+                message,
+                type
+            })
+        }
+
         if(!user){
-            return res.status(400).send({error: 'Email nao encontrado'})
+            message = 'Email nao encontrado!'
+            type = 'danger'
+            return res.render('unsigned', {
+                user: null,
+                message,
+                type
+            })
         }
 
         if(!await bcrypt.compare(password, user.password)){
-            return res.status(400).send({error: 'Senha incorreta'})
+            message = 'Senha incorreta'
+            type = 'danger'
+            return res.render('unsigned', {
+                user: null,
+                message,
+                type
+            })
         }  
 
         user.password = undefined
-      
-        return res.send({
-            user, 
-            token: gerarToken({id: user.id})
+        message = 'Login realizado com sucesso, bem vindo!'
+        type = 'success'
+
+        const taskList = await Task.find();
+
+        return res.render("index",{
+            // user, 
+            // token: gerarToken({id: user.id}),
+            taskList, 
+            task: null,
+            taskDelete: null,
+            message,
+            type
         })
             
     } catch (error) {
@@ -84,7 +85,40 @@ const auth = async (req,res) => {
     }
 }
 
+const createUser = async (req,res) => {
+    try {
+        const email  = req.body.email;
+        if (await User.findOne({email})){
+            message = "Já existe uma conta cadastrada com esse e-mail!"
+            type = "danger"
+            return res.render("unsigned", {
+                user: null,
+                message,
+                type
+            })
+        }else{
+            const user = await User.create(req.body);
+            message = "Conta cadastrada com sucesso"
+            type = "success"
+            user.password = undefined;
+            return res.render("index",{
+                // user, 
+                // token: gerarToken({id: user._id})
+                taskList: null, 
+                task: null,
+                taskDelete: null,
+                message,
+                type
+            })
+        }
+    } catch (error) {
+        res.status(500).send({error: error.message})
+    }
+}
+
 module.exports = {
     createUser,
-    auth
+    auth,
+    sign,
+    register
 };
