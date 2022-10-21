@@ -13,7 +13,7 @@ function gerarToken(params = {}) {
     })
 }
 
-const sign = async (req,res) => {
+const signIn = async (req,res) => {
     try {
         return res.render("unsigned", {user: null, message: null, type: null})
     } catch (error) {
@@ -24,6 +24,16 @@ const sign = async (req,res) => {
 const register = async (req,res) => {
     try {
         return res.render("register", {user: null})
+    } catch (error) {
+        return res.send({message: 'erro ao entrar na pagina', error: error})
+    }
+}
+
+const signOut = async (req,res) => {
+    try {
+        message = 'logOut realizado com sucesso!'
+        type = 'success'
+        return res.render("unsigned", {user: null, message, type})
     } catch (error) {
         return res.send({message: 'erro ao entrar na pagina', error: error})
     }
@@ -119,6 +129,7 @@ const createUser = async (req,res) => {
 module.exports = {
     createUser,
     auth,
-    sign,
-    register
+    signIn,
+    register,
+    signOut
 };
