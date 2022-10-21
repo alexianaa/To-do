@@ -76,7 +76,7 @@ const auth = async (req,res) => {
       
         return res.send({
             user, 
-            token: gerarToken({id: user._id})
+            token: gerarToken({id: user.id})
         })
             
     } catch (error) {

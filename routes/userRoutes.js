@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/auth");
 routes.use(authMiddleware);
 
 routes.get('/', (req,res) => {
-    return res.send({message: 'Bem vindo, usuario'})
+    return res.send({message: 'Bem vindo, usuario', user: req.userId})
 })
 routes.get('/getAll', UserController.getAllUsers)
 
