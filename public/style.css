@@ -216,7 +216,7 @@ div#btnConfirmations a:hover {
     color: #1dad00;
 }
 
-span#close-message:hover {
+#close-message:hover {
     cursor: pointer;
 }
 

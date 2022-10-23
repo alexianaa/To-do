@@ -31,9 +31,7 @@ const register = async (req,res) => {
 
 const signOut = async (req,res) => {
     try {
-        message = 'logOut realizado com sucesso!'
-        type = 'success'
-        return res.render("unsigned", {user: null, message, type})
+        return res.redirect('/')
     } catch (error) {
         return res.send({message: 'erro ao entrar na pagina', error: error})
     }
