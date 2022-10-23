@@ -2,7 +2,7 @@ const routes = require("express").Router();
 const TaskController = require("../controller/TaskController");
 const authMiddleware = require("../middleware/auth");
 
-routes.use(authMiddleware);
+//routes.use(authMiddleware);
 
 routes.get("/:user", TaskController.getAllTasks);
 routes.post("/create/:user", TaskController.createTask);
