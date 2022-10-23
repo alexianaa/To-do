@@ -19,9 +19,9 @@
 
     <header>
         <% if(task == null){ %>
-            <%- include('./components/form', { title: "TO DO LIST", action: "task/create", value: "", idBtn: "addButton", nameBtn: "Adicionar"}) %>
+            <%- include('./components/form', { title: "TO DO LIST", action: `task/create/${userId}`, value: "", idBtn: "addButton", nameBtn: "Adicionar"}) %>
         <% } else { %>
-            <%- include('./components/form', { title: "EDITAR TAREFAS", action: `task/updateOne/${task._id}`, value: task.task, idBtn: "updateButton", nameBtn: "Atualizar"}) %>
+            <%- include('./components/form', { title: "EDITAR TAREFAS", action: `task/updateOne/${task._id}/${userId}`, value: task.task, idBtn: "updateButton", nameBtn: "Atualizar"}) %>
         <% } %>
     </header>
 
@@ -34,8 +34,8 @@
                         <span>Criado em <%= task.date.toLocaleDateString('pt-BR') %></span> 
                     </div>
                     <div>
-                        <a class="btn" href="task/getById/<%= task._id %>/update"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn" href="task/getById/<%= task._id %>/delete"><i class="bi bi-trash"></i></a>
+                        <a class="btn" href="/task/getById/<%= task._id %>/update/<%= userId %>"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn" href="/task/getById/<%= task._id %>/delete/<%= userId %>"><i class="bi bi-trash"></i></a>
                     </div>
                 </li>
             <% }) %>
@@ -43,7 +43,7 @@
     </section>
 
     <% if(taskDelete != null) { %>
-       <%- include('./components/modalDel', {task: taskDelete}) %> 
+       <%- include('./components/modalDel', {task: taskDelete, userId: userId}) %> 
     <% } %>
 
     <section id="sair" >

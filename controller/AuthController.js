@@ -75,20 +75,8 @@ const auth = async (req,res) => {
         }  
 
         user.password = undefined
-        message = 'Login realizado com sucesso, bem vindo!'
-        type = 'success'
-
-        const taskList = await Task.find();
-
-        return res.render("index",{
-            // user, 
-            // token: gerarToken({id: user.id}),
-            taskList, 
-            task: null,
-            taskDelete: null,
-            message,
-            type
-        })
+        const userId = user._id
+        return res.redirect(`/task/${userId}`)
             
     } catch (error) {
         res.status(500).send({error: error.message})
@@ -108,18 +96,8 @@ const createUser = async (req,res) => {
             })
         }else{
             const user = await User.create(req.body);
-            message = "Conta cadastrada com sucesso"
-            type = "success"
             user.password = undefined;
-            return res.render("index",{
-                // user, 
-                // token: gerarToken({id: user._id})
-                taskList: null, 
-                task: null,
-                taskDelete: null,
-                message,
-                type
-            })
+            return res.redirect(`/task/${user._id}`)
         }
     } catch (error) {
         res.status(500).send({error: error.message})
