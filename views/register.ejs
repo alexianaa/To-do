@@ -10,15 +10,17 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <form action="/createUser" method="post">
-        <p>Nome</p>
-        <input type="text" name="name" id="name" placeholder="insira o seu nome" >
-        <p>E-mail</p>
-        <input type="text" name="email" id="email" placeholder="insira o seu e-mail" >
-        <p>Senha</p>
-        <input type="password" name="password" id="password" placeholder="insira a sua senha" >
-        <button type="submit" id="loginBtn">Cadastre-se</button>
-    </form>
+    <div class="login-form">
+        <h1>Cadastro</h1>
+        <form action="/createUser" method="post" class="formulario">
+            <p>Nome</p>
+            <input type="text" name="name" id="name" placeholder="insira o seu nome" >
+            <p>E-mail</p>
+            <input type="text" name="email" id="email" placeholder="insira o seu e-mail" >
+            <p>Senha</p>
+            <input type="password" name="password" id="password" placeholder="insira a sua senha" >
+            <button type="submit" id="loginBtn">Cadastre-se</button>
+        </form>
+    </div>
 </body>
 </html>
