@@ -107,7 +107,7 @@ const taskCheck = async (req,res) => {
         const task = await Task.findOne({_id: req.params.id});
         task.check = !task.check;
         await Task.updateOne({_id: req.params.id}, task);
-        res.redirect("/task");
+        res.redirect(`/task/${task.userId}`);
     } catch (err) {
         res.status(500).send({error: err.message})
     }

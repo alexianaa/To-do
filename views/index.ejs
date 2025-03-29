@@ -31,7 +31,7 @@
             <% taskList.forEach((task) => { %>
                 <li class="check-<%= task.check %>">
                     <div>
-                        <a href="task/check/<%= task.id %>" class="check-<%= task.check %> " ><%= task.task %></a>
+                        <a href="check/<%= task.id %>/<%= userId %>" class="check-<%= task.check %> " ><%= task.task %></a>
                         <span>Criado em <%= task.date.toLocaleDateString('pt-BR') %></span> 
                     </div>
                     <div>
