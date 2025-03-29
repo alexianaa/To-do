@@ -1,12 +1,18 @@
-const closeMessage = document.querySelector("#close-message");
-const message = document.querySelector(".message")
+// Aguarda o DOM carregar completamente
+document.addEventListener('DOMContentLoaded', function() {
+    const message = document.querySelector(".message");
+    const closeMessage = document.querySelector("#close-message");
 
-// ao clicar no botao fecha notificacao
-closeMessage.addEventListener("click", () => {
-    message.style.display = "none"
-})
+    // Só executa se a mensagem existir
+    if (message && closeMessage) {
+        // Fecha ao clicar no botão
+        closeMessage.addEventListener("click", () => {
+            message.style.display = "none";
+        });
 
-// desaparece notificacao de confirmacao de acao apos 5 segundos
-setTimeout(() => {
-    message.style.display = "none"
-}, 5000);
+        // Fecha automaticamente após 5 segundos
+        setTimeout(() => {
+            message.style.display = "none";
+        }, 5000);
+    }
+});
