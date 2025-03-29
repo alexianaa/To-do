@@ -7,9 +7,9 @@
 }
 
 body {
-    background-color: #ffebfd;
-    width: 100%;
-    height: 100%;
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
 }
 
 header {
@@ -22,24 +22,31 @@ header h1 {
     padding-bottom: 3rem;
     color: #fff
 }
+        
+.login-form {
+    padding: 10vh 20vw;
+}
+
+.login-form h1 {
+    padding-bottom: 20px;
+}
 
 input {
-    margin: 0;
     border: none;
     border-radius: 0;
-    width: 75%;
+    width: 30vw;
     padding: .6rem;
     font-size: 1rem;
     outline: none;
-    background-color: #fff8f8;
-    color: #634B7D;
+    background-color: #dddddd;
+    color: #3F7CAC;
 }
 
 button {
     padding: .6rem;
-    width: 20%;
-    background-color: #fff8f8;
-    color: #634B7D;
+    width: 15vw;
+    background-color: #dddddd;
+    color: #3F7CAC;
     text-align: center;
     font-size: 1rem;
     cursor: pointer;
@@ -50,7 +57,26 @@ button {
 }
 
 button:hover {
-    background-color: #634B7D;
+    background-color: #3F7CAC;
+    color: #fff;    
+}
+
+.login-form a {
+    padding: .6rem;
+    width: 15vw;
+    background-color: #dddddd;
+    color: #3F7CAC;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    transition: all .3s ease-in-out;
+}
+
+.login-form a:hover {
+    background-color: #3F7CAC;
     color: #fff;    
 }
 
@@ -255,4 +281,10 @@ ul li a.check-false::before {
     height: 16px;
     width: 16px;
     border-width: 2px 2px 2px 2px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

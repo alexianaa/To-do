@@ -10,7 +10,7 @@
     <title>Login</title>
 </head>
 <body>
-    <% if(message != '') { %>
+    <% if(message != '' && message != null) { %>
         <section class="message message-<%= type %>">
             <p><%= message %> </p>
             <span id="close-message" ><i class="bi bi-x-circle"></i></span>
@@ -18,15 +18,19 @@
     <% } %>
 
     <% if(!user) { %> 
-        <h1>LOGIN</h1>
-        <form action="/login" method="post">
-            <p>E-mail:</p>
-            <input type="text" name="email" id="email" placeholder="insira o e-mail" >
-            <p>Senha:</p>
-            <input  type="password" name="password" id="password" placeholder="insira a senha">
-            <button type="submit" id="loginBtn" >Enviar</button>
-            <a href="register">Cadastre-se</a>
-        </form>
+        <div class="login-form">
+            <h1>LOGIN</h1>
+            <form action="/login" method="post" class="formulario">
+                <p>E-mail:</p>
+                <input type="text" name="email" id="email" placeholder="insira o e-mail" >
+                <p>Senha:</p>
+                <input  type="password" name="password" id="password" placeholder="insira a senha">
+
+                <button type="submit" id="loginBtn" >Enviar</button>
+                
+                <a href="register">Cadastre-se</a>
+            </form>
+        </div>
     <% } else { %>
         <%- include('./index') %>
     <% } %>  
