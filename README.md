@@ -1,5 +1,9 @@
 # to-do
 
+![página principal](./img.png)
+
+[Veja o vídeo demonstrativo](./demo.mp4)
+
 ## Características 
 
 - Banco de Dados MongoDB
